@@ -29,7 +29,7 @@
   background: none;
   display: block;
   
-  margin: 20px; auto;
+  margin: 20px auto;
   text-align: center;
   border: 2px solid #3498db;
   padding: 5px 10px;
@@ -39,11 +39,16 @@
   transition: 0.25s;
 }
 
+.log-chat input[type = "text"]{
+	margin: 10px auto;	
+}
+
 .log-form textarea[readonly = "readonly"]{
   border:0;
 
   
   font-family: 'Oswald', sans-serif;
+ 
   background: #0008;
   display: block;
   margin: 20px 7px;
@@ -82,6 +87,12 @@
   border-radius: 24px;
   transition: 0.25s;
   cursor: pointer;
+}
+
+
+#chat-area{
+	height = 100vh;
+	
 }
 
 .log-form input[type = "button"]{

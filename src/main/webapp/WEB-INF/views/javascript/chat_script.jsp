@@ -2,14 +2,25 @@
     pageEncoding="UTF-8"%>
     
 let messagesTextArea = document.querySelector("#messagesTextArea")
-var websocket = new WebSocket("ws://localhost:8080/chat");
+let websocket = null;
+let isconnected = false;
 
-           
-messagesTextArea.value = "Starting server connection... \n";
-websocket.onopen = function(message){ processOpen(message);};            
-websocket.onclose = function(message){ processClose(message);};
-websocket.onmessage = function(message){ processMessage(message);};
-websocket.onerror = function(message){ processError(message);};
+
+function startConnection(){
+
+	if(!isconnected){
+		messagesTextArea.value = "Starting server connection... \n";
+		websocket = new WebSocket("ws://${localh}:8080/chat");
+		websocket.onopen = function(message){ processOpen(message);};            
+		websocket.onclose = function(message){ processClose(message);};
+		websocket.onmessage = function(message){ processMessage(message);};
+		websocket.onerror = function(message){ processError(message);};
+	}
+}
+
+
+
+
                       
 function processOpen(message){
     messagesTextArea.value += "Server connect... \n";
@@ -38,6 +49,13 @@ function processMessage(message){
     */            
 }         
 function sendMessage(){
+	if(!isconnected)
+	{
+		startConnection();
+		isconnected = true;
+		return;
+	}
+
     websocket.send(messageText.value);
     messageText.value = "";
 }            

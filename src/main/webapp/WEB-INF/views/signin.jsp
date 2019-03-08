@@ -31,11 +31,14 @@
 
 </nav>
 
+
+
 <div class="wrapper">
   <div class="log-card">
     <div class="log-front">
       <div class="log-front-content">
             <a>Are you ready?</a>
+            <a>${errorLocation}</a>
       </div>
     </div>
     <div class="log-form rotating-border">
@@ -46,7 +49,7 @@
       <form action="mlogin" class="log-front-content" method="post">
         <h1>Login</h1>
         <input type="text" name="name" placeholder="Username">
-        <input type="password" name="pwd" placeholder="Password">
+        <input type="password" name="password" placeholder="Password">
         <input type="submit" name="login" value="Login">
       </form>
     </div>
