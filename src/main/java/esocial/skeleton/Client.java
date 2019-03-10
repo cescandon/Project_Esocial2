@@ -5,6 +5,7 @@
 * plugins maven 1.6
 * Getters and setters are provided.
 * Query provided for database structure esocial[nbuser]
+*
 */
 package esocial.skeleton;
 
