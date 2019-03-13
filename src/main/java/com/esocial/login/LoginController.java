@@ -31,7 +31,7 @@ public class LoginController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String showHome() {
 		
-		database.validateUser(user, password)
+		//database.validateUser(user, password);
 		
 		return "/WEB-INF/views/signin.jsp";
 	}

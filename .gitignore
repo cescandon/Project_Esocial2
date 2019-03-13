@@ -8,6 +8,9 @@ tomcat
 # Default excludes
 #
 
+#database
+derby.log
+
 # Binaries
 *.7z
 *.dmg
