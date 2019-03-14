@@ -8,8 +8,8 @@ import java.sql.Statement;
  
 public class WebDatabase {
 
-  Connection conn;
-  Statement stmt;
+  Connection conn = null;
+  Statement stmt = null;
   
   String directory;
   String dbName;
@@ -34,27 +34,6 @@ public class WebDatabase {
 	  
   }
  
-  public void normalDbUsage() throws SQLException {
-    Statement stmt = conn.createStatement();
- 
-    // drop table
-    // stmt.executeUpdate("Drop Table users");
- 
-//    // create table
-    stmt.executeUpdate("Create table users (id int primary key, name varchar(30), email varchar(25), password)");
- 
-//    // insert 2 rows
-    stmt.executeUpdate("insert into users values (1,'tom')");
-    stmt.executeUpdate("insert into users values (2,'peter')");
- 
-    // query
-    ResultSet rs = stmt.executeQuery("SELECT * FROM users");
- 
-    // print out query result
-    while (rs.next()) { 
-      System.out.printf("%d\t%s\n", rs.getInt("id"), rs.getString("name"));
-    }
-  }
   
   
   // checkifuserexists Boolean
