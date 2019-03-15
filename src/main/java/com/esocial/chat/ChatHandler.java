@@ -18,7 +18,7 @@ public class ChatHandler extends TextWebSocketHandler {
     	System.out.println("server rcvd message : " + message);
     	
     
-        session.sendMessage(new TextMessage("Server echo: "+ userdata));  
+        session.sendMessage(new TextMessage("Server echo: "+ message));  
         
     }
     

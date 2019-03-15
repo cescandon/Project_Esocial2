@@ -21,20 +21,20 @@ public class LoginService {
 		WebDatabase db = new WebDatabase();
 
 
-		FileReader.TryTestFile();
+		//FileReader.TryTestFile();
 		
-		try {
-			db.connectionToDerby();
-			db.normalDbUsage();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			db.connectionToDerby();
+//			db.normalDbUsage();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
+		if(user == "admin")
+			return true;
 	
-
-		
-		return true;
+		return false;
 	}
 
 }
