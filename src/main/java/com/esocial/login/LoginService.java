@@ -31,7 +31,7 @@ public class LoginService {
 //			e.printStackTrace();
 //		}
 		
-		if(user == "admin")
+		if(user == "admin" || user == "user1")
 			return true;
 	
 		return false;
