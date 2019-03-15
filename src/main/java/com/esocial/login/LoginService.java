@@ -1,24 +1,40 @@
 package com.esocial.login;
 
 
+import java.sql.SQLException;
+
+
 import org.springframework.stereotype.Service;
 import com.esocial.database.*;
+import com.esocial.general_util.*;
 
 //new login service()
 @Service
 public class LoginService {
 	
-//    EntityManagerFactory emf = Persistence.createEntityManagerFactory("LabJPAPU");
-//    EntityManager em = emf.createEntityManager();
+
 	
 	public boolean validateUser(String user, String password) {
 		
 
-		//WebDatabase db = new WebDatabase();
-		// db.checkIfValid(username, password);
-		  
+
+		WebDatabase db = new WebDatabase();
+
+
+		FileReader.TryTestFile();
 		
-		return user.equalsIgnoreCase("admin") && password.equals("happy");
+		try {
+			db.connectionToDerby();
+			db.normalDbUsage();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	
+
+		
+		return true;
 	}
 
 }
