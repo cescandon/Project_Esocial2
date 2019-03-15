@@ -32,18 +32,55 @@ public WebDatabase() {
 	  
   }
   
-  private void createTable()
+  public void createTable() throws SQLException
   {
 	  String command = "Create table users (id serial primary key, name varchar(30), email varchar(30), password varchar(20))";
 	  try {
-		stmt.executeUpdate(command);
+		  conn = connectionToDerby();
+		  stmt.executeUpdate(command);
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	  finally
+	  {
+		  if(stmt != null)
+		  {
+			  stmt.close();
+		  }
+		  if(conn != null)
+		  {
+			  conn.close();
+		  }
+	  }
+  }
+  
+  public void deleteTable() throws SQLException
+  {
+	  String command = "DROP TABLE users";
+	  
+	  try
+	  {
+		  conn = connectionToDerby();
+		  stmt.executeUpdate(command);
+	  }
+	  catch(Exception delExc)
+	  {
+		  delExc.printStackTrace();
+	  }
+	  finally
+	  {
+		  if(stmt != null)
+		  {
+			  stmt.close();
+		  }
+		  if(conn != null)
+		  {
+			  conn.close();
+		  }
+	  }
   }
  
-  
   
   // checkifuserexists Boolean
   public Boolean checkUser(String userName) throws SQLException
