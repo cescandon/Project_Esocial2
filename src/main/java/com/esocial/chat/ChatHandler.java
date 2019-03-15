@@ -17,9 +17,9 @@ public class ChatHandler extends TextWebSocketHandler {
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
     	System.out.println("server rcvd message : " + message.getPayload());
     	
-    
-        session.sendMessage(new TextMessage("Server echo: "+ message.getPayload()));  
-        
+ 	
+    	String response = CommandService.Process(message.getPayload());
+        session.sendMessage(new TextMessage(response));       
     }
     
     @Override
