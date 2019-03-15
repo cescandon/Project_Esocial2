@@ -13,9 +13,18 @@
  <link rel="stylesheet" href="css/forms">
 </head>
 
- 
-</head>
+
 <body>
+
+<nav class="navbar">
+  <a href="javascript:void(0)" id="brand-logo">ESocial</a>
+  <a href="javascript:void(0)" id="menu">menu</a>
+  <div class="nav-options">
+    <a href="javascript:void(0)" onclick="OpenClose();">My Tasks</a>
+    <a href="javascript:void(0)" onclick="OpenClose();">Messages</a>
+    <a href="javascript:void(0)" onclick="Rotate();">Login</a>
+  </div>
+</nav>
     
 <div class="wrapper" id="chat-wrapper">
   <div class="log-card">

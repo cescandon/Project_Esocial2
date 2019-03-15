@@ -79,47 +79,6 @@
 </div>
 
 
-
-  <div class="task-list">
-      <div class="list-area">
-        <label class="task">
-          <input type="checkbox" >
-          <i class="fas fa-check"></i>
-          <span class="text">Have Breakfast</span>
-        </label>
-
-        <label class="task">
-          <input type="checkbox" >
-          <i class="fas fa-check"></i>
-          <span class="text">Go to school and do some homework and do other things</span>
-        </label>
-
-        <label class="task" >
-          <input type="checkbox" >
-          <i class="fas fa-check"></i>
-          <span class="text">Read a book</span>
-        </label>
-
-        <label class="task">
-          <input type="checkbox" >
-          <i class="fas fa-check"></i>
-          <span class="text">Play games</span>
-        </label>
-     </div>
-  </div>
-
-
-
-  <!-- <div class="loading-screen">
-
-  </div> -->
-
-
-
-
-
-
-
 </body>
 
 <script type="text/javascript">
