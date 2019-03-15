@@ -31,6 +31,17 @@ public WebDatabase() {
     return conn;
 	  
   }
+  
+  private void createTable()
+  {
+	  String command = "Create table users (id serial primary key, name varchar(30), email varchar(30), password varchar(20))";
+	  try {
+		stmt.executeUpdate(command);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+  }
  
   
   
@@ -44,14 +55,20 @@ public WebDatabase() {
 	  try {
 		  Connection conn = connectionToDerby();
 		  Statement stmt = conn.createStatement();
-		  ResultSet results = stmt.executeQuery("SELECT * FROM users WHERE name = " + userName);
+		  ResultSet results = stmt.executeQuery("SELECT * FROM users WHERE name = '" + userName +"'");
 		  
 		  if(results != null)
 		  {
 			  try {
 				  if(results.next())
 				  {
-					  doesExist = true;
+					  String data = results.getString("name");
+					  if(data == userName)
+					  {
+						  //was a match
+						  doesExist = true;
+					  }
+					  
 				  }
 			  }
 				  catch (Exception resultsException)
@@ -80,7 +97,7 @@ public WebDatabase() {
 
  
   
-  // check if password is correct Boolean
+  // check if password is correct return Boolean
   public Boolean checkPass(String userPass) throws SQLException
   {
 	  // boolean variable
@@ -91,7 +108,7 @@ public WebDatabase() {
 		  
 		  Connection conn = connectionToDerby();
 		  Statement stmt = conn.createStatement();
-		  ResultSet results = stmt.executeQuery("SELECT * FROM users WHERE password = " + userPass);
+		  ResultSet results = stmt.executeQuery("SELECT * FROM users WHERE password = '" + userPass + "'");
 		  
 		  if(results != null)
 		  {
@@ -99,7 +116,12 @@ public WebDatabase() {
 			  {
 				  if(results.next())
 				  {
+					 String data = results.getString("userPass");
+					 if(data == userPass)
+					 {
+					  // a hit
 					  samePass = true;
+					 }
 				  }
 			  }
 				  catch (Exception resultsException)
@@ -127,14 +149,22 @@ public WebDatabase() {
 	  return samePass;
   }
   
-  public void CheckIfUserExists(String user) {
+  // Check if user exist and print result. 
+  public void CheckIfUserExists(String user)
+  {
 	  
-	  try {
-		  Statement stmt = conn.createStatement();
-		  ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE name = '" + user + "'");
+	  try 
+	  {
+		  boolean confirm = checkUser(user); // call checkUser as a helper function
 		  
-
-		  
+		  if(confirm == true)
+		  {
+			  System.out.println("User: " + user + " does exist.");
+		  }
+		  if(confirm == false)
+		  {
+			  System.out.println("User: " + user + " not found");
+		  }
 	  }
 	   catch(Exception e) {
 		   System.out.println("Error :" + e.getMessage());
@@ -142,25 +172,40 @@ public WebDatabase() {
 	   
   }
   
-  public void deleteUser(String username) {
+  // delete user and print result 
+  public void deleteUser(String _username, String _userPassword) throws SQLException
+  {
+	  // delete sql statement with name and password acting as filter
+	  // in case multiple users with same name
+	  String stmtDelete = "DELETE FROM users WHERE name, password = '" + _username + "'" + "'" + _userPassword + "'";  
+	  
 	  //check if it exists
-	  
-	  
-	  //find it and delete it
-	   
+		try
+		{
+			Connection conn = connectionToDerby();
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(stmtDelete);
+			System.out.println("User: " + _username + " is deleted.");
+		}catch(Exception deleteExc)
+		{
+			deleteExc.printStackTrace();
+		}
+		finally
+		{
+			conn.close();
+		}
   }
   
   
   
-  // create user void
+  // create user 
   public void createUser(String nameEntry, String userEmail, String userPass) throws SQLException
   {
-	 
+	  // create sql insert statement, id is configured by create table method
+	  // by using a serialized id primary key
 	  
-	  // create sql insert statement, id is configured by keygenerate method to 
-	  // determine id placement
-	  String insertTableSQL = "INSERT INTO users" + "(id, name, email, password) " + "VALUES"
-	  + "(" + stmt.getGeneratedKeys() + ", 'nameEntry', 'userEmail', 'userPass')";
+	  String insertTableSQL = "INSERT INTO users" + "(name, email, password) " + 
+	  "VALUES( '" + nameEntry + "' " + userEmail + "'" + userPass + "')"; 
 	  
 	  try
 	  {
@@ -185,36 +230,4 @@ public WebDatabase() {
 		  }
 	  }
   }
-  
-  // delete user 
-  public void deleteUser() throws SQLException
-  {
-	  String deleteEntry = "DELETE FROM user WHERE id = ?";
-	  int maxRows;
-	  
-	  try
-	  {
-		  conn = connectionToDerby();
-		  stmt = conn.createStatement();
-		  maxRows = stmt.getFetchSize();
-		  stmt.setMaxRows(maxRows);
-		  
-		  // execute delete and update DB table
-		  stmt.executeUpdate(deleteEntry);
-		  
-		  // print out result
-		  System.out.println("Record is deleted");
-	  }catch(Exception deleteException)
-	  {
-		  deleteException.printStackTrace();
-	  }
-	  finally
-	  {
-		  if(conn != null)
-		  {
-			  conn.close();
-		  }
-	  }
-  }
-   
 }
