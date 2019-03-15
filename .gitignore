@@ -10,6 +10,7 @@ tomcat
 
 #database
 derby.log
+MyDatabases
 
 # Binaries
 *.7z

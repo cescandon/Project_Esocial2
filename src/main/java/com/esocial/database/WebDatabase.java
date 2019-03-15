@@ -15,10 +15,10 @@ public class WebDatabase {
   String dbName;
   
  
- public void WebDatabase(String dir, String databaseName) {
-	 directory = dir;
-	 dbName = databaseName; 
- }
+  public WebDatabase() {
+		dbName = "WebDatabase";
+		directory= "./MyDatabases/";
+	}
   
   private Connection connectionToDerby() throws SQLException {
     // -------------------------------------------
