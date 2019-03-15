@@ -31,20 +31,23 @@ function processError(message){
 }          
 function processMessage(message){
 	console.log(message);
-	messagesTextArea.value += message.data + " \n";
-	/*              
-
-	let jsonData = JSON.parse(message.data);
-    if(jsonData.message !== null){
-        messagesTextArea.value += jsonData.message + "\n";
-        if(jsonData.message.toString()[0] == 'X')
-        {
-            document.querySelector(".target").innerText = "Changed  " + jsonData.message;
-        }
-    }   
-    
-    */            
-}         
+	console.log("process");
+	processCMD(message);	           
+}
+let count = 0;
+function processCMD(message){
+	let msg = "";
+	msg += message.data;
+	let check = msg.substring(0, 4);
+	if(check.localeCompare("CT"))
+	{
+		console.log("Doing command");
+		AddTask(count++, msg.substring(3,msg.length));
+	}
+	else
+		messagesTextArea.value += msg.data + " \n";
+}
+      
 function sendMessage(){
 	if(!isconnected)
 	{
@@ -52,10 +55,10 @@ function sendMessage(){
 		isconnected = true;
 		return;
 	}
-
     websocket.send(messageText.value);
     messageText.value = "";
-}            
+}   
+         
 function closeConnection(){
     messagesTextArea.value += "You have disconnected... \n";
     websocket.close();

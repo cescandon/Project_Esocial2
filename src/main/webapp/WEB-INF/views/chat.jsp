@@ -45,6 +45,22 @@
 
   <div class="task-list">
       <div class="list-area">
+      
+      
+<!-- Dynamic tasks -->
+
+
+     </div>
+  </div>
+
+  <!-- <div class="loading-screen"></div> -->
+
+</body>
+    <script src="chat_js"></script>
+    <script src="task_js"></script>
+    
+    
+<!--           <div class="list-area">
         <label class="task">
           <input type="checkbox" >
           <i class="fas fa-check"></i>
@@ -68,12 +84,6 @@
           <i class="fas fa-check"></i>
           <span class="text">Play games</span>
         </label>
-     </div>
-  </div>
-
-  <!-- <div class="loading-screen"></div> -->
-
-</body>
-    <script src="chat_js"></script>
-    <script src="task_js"></script>
+     </div> -->
+    
 </html>
