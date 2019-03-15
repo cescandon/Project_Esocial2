@@ -11,12 +11,13 @@ public class WebDatabase {
   Connection conn = null;
   Statement stmt = null;
   
-  String directory;
-  String dbName;
+  String directory ;
+  String dbName ;
   
 public WebDatabase() {
 	dbName = "WebDatabase";
 	directory= "./MyDatabases/";
+	
 }
  
   private Connection connectionToDerby() throws SQLException {
@@ -28,13 +29,14 @@ public WebDatabase() {
     //String dbUrl = "jdbc:derby:/Users/myuser/Desktop/DataTest/MyDB/demo;create=true";
 	String dbUrl = "jdbc:derby:" + directory + dbName + ";create=true";
     conn = DriverManager.getConnection(dbUrl);
+    stmt = conn.createStatement();
     return conn;
 	  
   }
   
   public void createTable() throws SQLException
   {
-	  String command = "Create table users (id serial primary key, name varchar(30), email varchar(30), password varchar(20))";
+	  String command = "Create table users (id SERIAL primary key, name varchar(30), email varchar(30), password varchar(20))";
 	  try {
 		  conn = connectionToDerby();
 		  stmt.executeUpdate(command);
@@ -42,6 +44,36 @@ public WebDatabase() {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	  finally
+	  {
+		  if(stmt != null)
+		  {
+			  stmt.close();
+		  }
+		  if(conn != null)
+		  {
+			  conn.close();
+		  }
+	  }
+  }
+  
+  public void ShowTable() throws SQLException {
+	  String command = "Select * users";
+	  
+	  try
+	  {
+		  conn = connectionToDerby();
+		  ResultSet result = stmt.executeQuery(command);
+		  while(result.next()) {
+			  System.out.println("ID: " + result.getInt("id") + "Name: " + result.getString("name") + " email: " + result.getString("email"));
+		  }
+		  
+		  
+	  }
+	  catch(Exception delExc)
+	  {
+		  delExc.printStackTrace();
+	  }
 	  finally
 	  {
 		  if(stmt != null)

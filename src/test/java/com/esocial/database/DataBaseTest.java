@@ -10,6 +10,8 @@ import org.junit.Test;
 
 public class DataBaseTest {
 	
+	// create oject 
+	WebDatabase tester;
 	// variables to use for passing to each respected test case
 	String username = "Tom";
 	String passW = "fml";
@@ -18,14 +20,64 @@ public class DataBaseTest {
 	@Before // setup constructor for database connection
 	public void Setup()
 	{
-		// create object and initialize with WebDatabase
-		WebDatabase tester = new WebDatabase();
+		// initialize object
+		tester = new WebDatabase();
 		
 		// call to create a table
 		// createtable calls private function to create connection
 		// to database.  table created assumed connection works
 		try {
 			tester.createTable();
+			tester.createUser(username, email, passW);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+
+
+	@Test
+	public final void testCheckUser() {
+		
+		
+		tester.CheckIfUserExists(username);
+		
+	}
+
+	@Test
+	public final void testCheckPass() {
+		
+		try {
+			tester.checkPass(passW);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public final void testCheckIfUserExists() {
+		
+		tester.CheckIfUserExists(username);
+	}
+
+	@Test
+	public final void testDeleteUser() {
+		
+		try {
+			tester.deleteUser(username, passW);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public final void testCreateUser() {
+		
+		try {
+			tester.createUser(username, email, passW);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -35,47 +87,16 @@ public class DataBaseTest {
 	@After
 	public void CleanUp()
 	{
-		WebDatabase tester = new WebDatabase();
-
+		
 		// delete created table 
 		try {
+			tester.ShowTable();
 			tester.deleteTable();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-	}
-
-	@Test
-	public final void testWebDatabase() {
-		fail("Not yet implemented"); // TODO
-		
-	}
-
-	@Test
-	public final void testCheckUser() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testCheckPass() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testCheckIfUserExists() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testDeleteUser() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testCreateUser() {
-		fail("Not yet implemented"); // TODO
 	}
 
 }
