@@ -36,13 +36,13 @@ public WebDatabase() {
   
   public void createTable() throws SQLException
   {
-	  String command = "Create table users (id SERIAL primary key, name varchar(30), email varchar(30), password varchar(20))";
+	  String command = "Create table users (id int primary key, name varchar(30), email varchar(30), password varchar(20))";
 	  try {
 		  conn = connectionToDerby();
 		  stmt.executeUpdate(command);
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
-		e.printStackTrace();
+		System.out.println("Error at createTable: " + e.getMessage() );
 	}
 	  finally
 	  {
@@ -70,9 +70,9 @@ public WebDatabase() {
 		  
 		  
 	  }
-	  catch(Exception delExc)
+	  catch(Exception e)
 	  {
-		  delExc.printStackTrace();
+		  System.out.println("Error at ShowTable: " + e.getMessage() );
 	  }
 	  finally
 	  {
@@ -96,9 +96,9 @@ public WebDatabase() {
 		  conn = connectionToDerby();
 		  stmt.executeUpdate(command);
 	  }
-	  catch(Exception delExc)
+	  catch(Exception e)
 	  {
-		  delExc.printStackTrace();
+		  System.out.println("Error at deleteTable: " + e.getMessage() );
 	  }
 	  finally
 	  {
@@ -119,7 +119,7 @@ public WebDatabase() {
   {
 	  // boolean variable
 	  boolean doesExist= false;
-	  
+	  System.out.println("Checking user");
 	    // create a query for username 
 	  try {
 		  Connection conn = connectionToDerby();
@@ -129,27 +129,23 @@ public WebDatabase() {
 		  if(results != null)
 		  {
 			  try {
-				  if(results.next())
+				  while(results.next())
 				  {
 					  String data = results.getString("name");
-					  if(data == userName)
-					  {
-						  //was a match
-						  doesExist = true;
-					  }
-					  
+					  if(data.equalsIgnoreCase(userName))
+						  doesExist = true;					 					  
 				  }
 			  }
-				  catch (Exception resultsException)
-				  {
-					  resultsException.printStackTrace();
-				  }
+			  catch (Exception e)
+			  {
+				  System.out.println("Error at checkUsersBOolean: " + e.getMessage() );
+			  }
 		  }
 	  }
-		  catch(Exception stmtException)
-		  {
-			  stmtException.printStackTrace();
-		  }
+	  catch(Exception e)
+	  {
+		  System.out.println("Error at checkUSer: " + e.getMessage() );
+	  }
 	  finally // closing connection in reverse order to avoid potential exceptions
 	  {
 		  if(stmt != null)
@@ -164,6 +160,60 @@ public WebDatabase() {
 	  return doesExist;
   }
 
+//checkifuserexists Boolean
+ public String getUserPassword(String userName)
+ {
+	  // boolean variable
+	  boolean doesExist= false;
+	  System.out.println("Checking user");
+	    // create a query for username 
+	  try {
+		  Connection conn = connectionToDerby();
+		  Statement stmt = conn.createStatement();
+		  ResultSet results = stmt.executeQuery("SELECT * FROM users WHERE name = '" + userName +"'");
+		  
+		  if(results != null)
+		  {
+			  try {
+				  while(results.next())
+				  {
+					  String data = results.getString("name");
+					  if(data.equalsIgnoreCase(userName))
+					  {
+						 String password = results.getString("password");
+						 return password;
+					  }
+				  }
+			  }
+			  catch (Exception e)
+			  {
+				  System.out.println("Error at checkUsersBOolean: " + e.getMessage() );
+			  }
+		  }
+	  }
+	  catch(Exception e)
+	  {
+		  System.out.println("Error at checkUSer: " + e.getMessage() );
+	  }
+	  finally // closing connection in reverse order to avoid potential exceptions
+	  {
+		  try {
+			  
+			  if(stmt != null)
+			  {
+				  stmt.close();
+			  }
+			  if(conn != null)
+			  {
+				  conn.close();
+			  }
+		  }catch(Exception e) {
+			  System.out.println("Error closing in check password");
+		  }
+
+	  }
+	  return null;
+ }
  
   
   // check if password is correct return Boolean
@@ -193,15 +243,15 @@ public WebDatabase() {
 					 }
 				  }
 			  }
-				  catch (Exception resultsException)
+				  catch (Exception e)
 				  {
-					  resultsException.printStackTrace();
+					  System.out.println("Error at CheckPassBoolean: " + e.getMessage() );
 				  }
 		  }
 	  }
-		  catch(Exception stmtException)
+		  catch(Exception e)
 		  {
-			  stmtException.printStackTrace();
+			  System.out.println("Error at checkPassBoolean: " + e.getMessage() );
 		  }
 	  finally
 	  {
@@ -219,7 +269,7 @@ public WebDatabase() {
   }
   
   // Check if user exist and print result. 
-  public void CheckIfUserExists(String user)
+  public Boolean CheckIfUserExists(String user)
   {
 	  
 	  try 
@@ -234,20 +284,23 @@ public WebDatabase() {
 		  {
 			  System.out.println("User: " + user + " not found");
 		  }
+		  return confirm;
 	  }
 	   catch(Exception e) {
-		   System.out.println("Error :" + e.getMessage());
+		   System.out.println("Error at checkIFExists: " + e.getMessage() );
 	   }
-	   
+	   return false;
   }
+  
+
   
   // delete user and print result 
   public void deleteUser(String _username, String _userPassword) throws SQLException
   {
 	  // delete sql statement with name and password acting as filter
 	  // in case multiple users with same name
-	  String stmtDelete = "DELETE FROM users WHERE name, password = '" + _username + "'" + "'" + _userPassword + "'";  
-	  
+	  String stmtDelete = "DELETE FROM users WHERE name = '" + _username + "'" +" and password = '" + _userPassword + "'";  
+	 
 	  //check if it exists
 		try
 		{
@@ -257,7 +310,7 @@ public WebDatabase() {
 			System.out.println("User: " + _username + " is deleted.");
 		}catch(Exception deleteExc)
 		{
-			deleteExc.printStackTrace();
+			System.out.println("Error at delete: " + deleteExc.getMessage() );
 		}
 		finally
 		{
@@ -266,6 +319,7 @@ public WebDatabase() {
   }
   
   
+  static int usersAdded = 0;
   
   // create user 
   public void createUser(String nameEntry, String userEmail, String userPass) throws SQLException
@@ -273,8 +327,9 @@ public WebDatabase() {
 	  // create sql insert statement, id is configured by create table method
 	  // by using a serialized id primary key
 	  
-	  String insertTableSQL = "INSERT INTO users" + "(name, email, password) " + 
-	  "VALUES( '" + nameEntry + "' " + userEmail + "'" + userPass + "')"; 
+	  String insertTableSQL = "INSERT INTO users" + "(id, name, email, password) " + 
+	  "VALUES("+  usersAdded +", '" + nameEntry + "', '" + userEmail + "', '" + userPass + "')"; 	  
+	  usersAdded++;
 	  
 	  try
 	  {
@@ -284,9 +339,9 @@ public WebDatabase() {
 		  
 		  // print out success
 		  System.out.println("User " + nameEntry + " is created");
-	  }catch(Exception insertException)
+	  }catch(Exception e)
 	  {
-		  insertException.printStackTrace();  
+		  System.out.println("Error at createUser: " + e.getMessage() ); 
 	  }finally 
 	  {
 		  if(conn != null)
