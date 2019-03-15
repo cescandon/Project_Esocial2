@@ -13,10 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class StylesController {
 	
-	//with autowiring
-//	@Autowired
-//	LoginService service;
-	
 	@RequestMapping(value = "/css/main", method = RequestMethod.GET)
 	public String mainCSS() {
 		return "/WEB-INF/views/css/main_css.jsp";
@@ -32,7 +28,6 @@ public class StylesController {
 		
 		return "/WEB-INF/views/css/forms_css.jsp";
 	}
-
 
 	@RequestMapping(value = "/css/tasks", method = RequestMethod.GET)
 	public String signInCSS() {

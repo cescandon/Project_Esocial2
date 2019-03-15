@@ -14,22 +14,31 @@
   font-size: 3em;
 }
 
+.chat-area{
+  position: fixed;
+  top: 80px;
+  right: 10px;
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+  margin: 20px;
+  transition: right .6s;
+}
 
 .log-form input{
-  color: white;
-  font-family: 'Oswald', sans-serif;
+  color: l;
   font-size: 1rem;
   z-index: 2;
 }
 
+
 .log-form input[type = "text"],
 .log-form input[type = "password"]
 {
-  border:0;  
+  border:0;
   background: none;
   display: block;
-  
-  margin: 20px auto;
+  margin: 0 auto 10px;
   text-align: center;
   border: 2px solid #3498db;
   padding: 5px 10px;
@@ -37,22 +46,15 @@
   outline: none;
   border-radius: 20px;
   transition: 0.25s;
-}
-
-.log-chat input[type = "text"]{
-	margin: 10px auto;	
+  color: white;
 }
 
 .log-form textarea[readonly = "readonly"]{
   border:0;
-
-  
-  font-family: 'Oswald', sans-serif;
- 
   background: #0008;
   display: block;
-  margin: 20px 7px;
-
+  margin: 20px 7px 0;
+  text-align: center;
   border: 2px solid #3498db;
   padding: 5px 10px;
   width: 300px;
@@ -64,14 +66,15 @@
 
 .log-form input[type = "text"]:focus,
 .log-form input[type = "password"]:focus,
-.log-form input[type = "button"]:focus
+.log-form input[type = "text"]:focus
 {
   width: 250px;
   border-color: #2ecc71;
 }
 
 
-.log-form input[type = "submit"]
+.log-form input[type = "submit"],
+.log-form input[type = "button"]
 {
   border:0;
   background: none;
@@ -87,31 +90,8 @@
   border-radius: 24px;
   transition: 0.25s;
   cursor: pointer;
+  color: white;
 }
-
-
-#chat-area{
-	height = 100vh;
-	
-}
-
-.log-form input[type = "button"]{
-  border:0;
-  background: none;
-
-  margin: 5px auto;
-  text-align: center;
-  border: 2px solid #00b894;
-  padding: 8px 20px;
-  width: 125px;
-  outline: none;
-
-  font-size: 1.2em;
-  border-radius: 24px;
-  transition: 0.25s;
-  cursor: pointer;
-}
-
 
 .log-form input[type = "submit"]:hover,
 .log-form input[type = "button"]:hover
@@ -133,10 +113,11 @@
 
 .loading-screen::before{
   content: "";
+
   position: absolute;
   left: 20%;
   transform: translateX(-50%) rotate(0);
- 
+  /* margin: auto; */
 
   width: 80px;
   height: 80px;
@@ -162,8 +143,6 @@
 
 
 /* ROTATION */
-
-
 .rotating-border{
   box-shadow: 0 20px 50px rgba(0,0,0,.5);
   overflow: hidden;
@@ -186,7 +165,7 @@
   left: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(to right, #0c002b, #1779ff);
+  background: linear-gradient(to right, #888, #fff);
   animation: animate1 2s linear infinite;
 }
 
@@ -205,7 +184,7 @@
   right: 0;
   width: 3px;
   height: 100%;
-  background: linear-gradient(to bottom, #0c002b, #1779ff);
+  background: linear-gradient(to bottom, #888, #fff);
   animation: animate2 2s linear infinite;
   animation-delay: 1s;
 }
@@ -225,7 +204,7 @@
   right: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(to left, #0c002b, #1779ff);
+  background: linear-gradient(to left, #888, #fff);
   animation: animate3 2s linear infinite;
 }
 
@@ -244,7 +223,7 @@
   left: 0;
   width: 3px;
   height: 100%;
-  background: linear-gradient(to top, #0c002b, #1779ff);
+  background: linear-gradient(to top, #888, #fff);
   animation: animate4 2s linear infinite;
   animation-delay: 1s;
 }

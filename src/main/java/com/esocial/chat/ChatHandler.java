@@ -15,10 +15,10 @@ public class ChatHandler extends TextWebSocketHandler {
 	
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-    	System.out.println("server rcvd message : " + message);
+    	System.out.println("server rcvd message : " + message.getPayload());
     	
     
-        session.sendMessage(new TextMessage("Server echo: "+ message));  
+        session.sendMessage(new TextMessage("Server echo: "+ message.getPayload()));  
         
     }
     

@@ -11,6 +11,7 @@
  <link rel="stylesheet" href="css/main">
  <link rel="stylesheet" href="css/cards">
  <link rel="stylesheet" href="css/forms">
+  <link rel="stylesheet" href="css/tasks">
 </head>
 
 
@@ -22,24 +23,57 @@
   <div class="nav-options">
     <a href="javascript:void(0)" onclick="OpenClose();">My Tasks</a>
     <a href="javascript:void(0)" onclick="OpenClose();">Messages</a>
-    <a href="javascript:void(0)" onclick="Rotate();">Login</a>
+    <a href="javascript:void(0)" onclick="ShowChat();">Chat</a>
   </div>
+
 </nav>
-    
-<div class="wrapper" id="chat-wrapper">
-  <div class="log-card">
-    <div class="log-chat">
-      <div class="log-chat-content log-form">
-        <h1 class="target">Online Chat</h1>
-        <textarea id="messagesTextArea" readonly="readonly" rows="10" cols="30"></textarea><br/>
-        <input type="text" id="messageText" size="50" />
-        <input type="button" value="Send" onclick="sendMessage();" />
-      </div>
+
+
+
+<div class="chat-area">
+  <div class="log-chat">
+    <div class="log-chat-content log-form">
+      <textarea id="messagesTextArea" readonly="readonly" rows="10" cols="30"></textarea><br/>
+      <input type="text" id="messageText" size="50" />
+      <input type="button" value="Send" onclick="sendMessage();" />
     </div>
   </div>
 </div>
 
+
+
+
+  <div class="task-list">
+      <div class="list-area">
+        <label class="task">
+          <input type="checkbox" >
+          <i class="fas fa-check"></i>
+          <span class="text">Have Breakfast</span>
+        </label>
+
+        <label class="task">
+          <input type="checkbox" >
+          <i class="fas fa-check"></i>
+          <span class="text">Go to school and do some homework and do other things</span>
+        </label>
+
+        <label class="task" >
+          <input type="checkbox" >
+          <i class="fas fa-check"></i>
+          <span class="text">Read a book</span>
+        </label>
+
+        <label class="task">
+          <input type="checkbox" >
+          <i class="fas fa-check"></i>
+          <span class="text">Play games</span>
+        </label>
+     </div>
+  </div>
+
+  <!-- <div class="loading-screen"></div> -->
+
 </body>
-    
     <script src="chat_js"></script>
+    <script src="task_js"></script>
 </html>
