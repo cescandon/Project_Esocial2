@@ -14,19 +14,17 @@ public class WebDatabase {
   String directory;
   String dbName;
   
+public WebDatabase() {
+	dbName = "WebDatabase";
+	directory= "./MyDatabases/";
+}
  
- public void WebDatabase(String dir, String databaseName) {
-	 directory = dir;
-	 dbName = databaseName; 
- }
-  
   private Connection connectionToDerby() throws SQLException {
     // -------------------------------------------
     // URL format is
     // jdbc:derby:<local directory to save data>
     // -------------------------------------------
 	  
-	//"derby:/Users/myuser/Desktop/DataTest/MyDB/" + "demo" +";create=true";
     //String dbUrl = "jdbc:derby:/Users/myuser/Desktop/DataTest/MyDB/demo;create=true";
 	String dbUrl = "jdbc:derby:" + directory + dbName + ";create=true";
     conn = DriverManager.getConnection(dbUrl);
@@ -127,6 +125,29 @@ public class WebDatabase {
 	  }
 	  
 	  return samePass;
+  }
+  
+  public void CheckIfUserExists(String user) {
+	  
+	  try {
+		  Statement stmt = conn.createStatement();
+		  ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE name = '" + user + "'");
+		  
+
+		  
+	  }
+	   catch(Exception e) {
+		   System.out.println("Error :" + e.getMessage());
+	   }
+	   
+  }
+  
+  public void deleteUser(String username) {
+	  //check if it exists
+	  
+	  
+	  //find it and delete it
+	   
   }
   
   

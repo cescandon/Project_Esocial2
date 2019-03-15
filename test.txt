@@ -1,0 +1,151 @@
+--INSERT INTO BRANDS
+----------------------------------------------------
+--Depression
+insert into Brands values (1,'zoloft',true);
+insert into Brands values (2,'prozac',true);
+insert into Brands values (3,'paxil',true);
+insert into Brands values (4,'celexa',true);
+insert into Brands values (5,'lexapro',true);
+
+--Cholesterol
+insert into Brands values (6,'lipitor',true);
+insert into Brands values (7,'zocor',true);
+insert into Brands values (8,'crestor',true);
+insert into Brands values (9,'pravachol',true);
+insert into Brands values (10,'mevacor',false);
+        --mevacor discontinued, no brands available
+
+--Hypertension
+insert into Brands values (11,'prinivil',true);
+insert into Brands values (12,'zestril',true);
+insert into Brands values (13,'cozaar',true);
+insert into Brands values (14,'norvasc',true);
+insert into Brands values (15,'microzide',true);
+
+
+
+--INSERT INTO GENERICS
+----------------------------------------------------
+
+--Depression
+insert into Generics values (1,'sertraline',true);
+insert into Generics values (2,'fluoxetine',true);
+insert into Generics values (3,'paroxetine',true);
+insert into Generics values (4,'citalopram',true);
+insert into Generics values (5,'escitalopram',true);
+
+--Cholesterol
+insert into Generics values (6,'atorvastatin', true);
+insert into Generics values (7,'simvastatin', true);
+insert into Generics values (8,'rosuvastatin', true);
+insert into Generics values (9,'pravastatin', true);
+insert into Generics values (10,'lovastatin', true);
+        --mevacor discontinued, no brands available
+
+--Hypertension
+insert into Generics values (11,'lisinopril',true);
+insert into Generics values (12,'losartan',true);
+insert into Generics values (13,'amlodipine',true);
+insert into Generics values (14,'hydrochlorothiazide',true);
+
+
+
+--INSERT INTO DRUGS
+----------------------------------------------------
+
+--Depression
+insert into Drugs values ('zoloft','sertraline', 'depression');
+insert into Drugs values ('prozac','fluoxetine','depression');
+insert into Drugs values ('paxil','paroxetine','depression');
+insert into Drugs values ('celexa','citalopram','depression');
+insert into Drugs values ('lexapro','escitalopram','depression');
+
+--Cholesterol
+insert into Drugs values ('lipitor','atorvastatin','cholesterol');
+insert into Drugs values ('zocor','simvastatin','cholesterol');
+insert into Drugs values ('crestor','rosuvastatin','cholesterol');
+insert into Drugs values ('pravachol','pravastatin','cholesterol');
+insert into Drugs values ('mevacor','lovastatin','cholesterol');
+        --mevacor discontinued, no brands available
+
+--Hypertension
+insert into Drugs values ('prinivil','lisinopril','hypertension');
+insert into Drugs values ('zestril','lisinopril','hypertension');
+insert into Drugs values ('cozaar','losartan','hypertension');
+insert into Drugs values ('norvasc','amlodipine','hypertension');
+insert into Drugs values ('microzide','hydrochlorothiazide','hypertension');
+
+
+
+--INSERT INTO GENERICS_PACKAGE
+----------------------------------------------------
+
+insert into Generics_Package(generic_name,strength,quantity) values ('lisinopril',10,30);
+insert into Generics_Package(generic_name,strength,quantity) values ('losartan',100,30);
+insert into Generics_Package(generic_name,strength,quantity) values ('amlodipine',5,30);
+insert into Generics_Package(generic_name,strength,quantity) values ('hydrochlorothiazide',25,30);
+
+--Cholesterol
+insert into Generics_Package(generic_name,strength,quantity) values ('atorvastatin',40,30);
+insert into Generics_Package(generic_name,strength,quantity) values ('simvastatin', 20,30);
+insert into Generics_Package(generic_name,strength,quantity) values ('rosuvastatin',20,30);
+insert into Generics_Package(generic_name,strength,quantity) values ('pravastatin', 40,30);
+insert into Generics_Package(generic_name,strength,quantity) values ('lovastatin', 10,30);
+
+--Simvastatin extra packages
+insert into Generics_Package(generic_name,strength,quantity) values ('simvastatin', 40,30);
+insert into Generics_Package(generic_name,strength,quantity) values ('simvastatin', 80,30);
+        --mevacor discontinued, no brands available
+
+
+
+
+--INSERT INTO GENERICS_PRICE
+----------------------------------------------------
+
+insert into Generics_Price values (1,'walmart', 4);
+insert into Generics_Price values (1,'walgreens', 5);
+insert into Generics_Price values (1,'costco', 5.34);
+
+insert into Generics_Price values (2,'walmart', 4);
+insert into Generics_Price values (2,'walgreens', 22.8);
+insert into Generics_Price values (2,'costco', 6.52);
+
+insert into Generics_Price values (3,'walmart', 4);
+insert into Generics_Price values (3,'walgreens', 10);
+insert into Generics_Price values (3,'costco', 7.32);
+
+insert into Generics_Price values (4,'walmart', 4);
+insert into Generics_Price values (4,'walgreens', 5);
+insert into Generics_Price values (4,'costco', 5.10);
+
+insert into Generics_Price values (5,'walmart', 9);
+insert into Generics_Price values (5,'walgreens', 18.42);
+insert into Generics_Price values (5,'costco', 10.11);
+
+insert into Generics_Price values (6,'walmart', 4);
+insert into Generics_Price values (6,'walgreens', 10);
+insert into Generics_Price values (6,'costco', 5.26);
+
+
+insert into Generics_Price values (7,'walmart', 13.65);
+insert into Generics_Price values (7,'walgreens', 64.35);
+insert into Generics_Price values (7,'costco', 13.82);
+
+insert into Generics_Price values (8,'walmart', 11.35);
+insert into Generics_Price values (8,'walgreens', 19.78);
+insert into Generics_Price values (8,'costco', 12.25);
+
+insert into Generics_Price values (9,'walmart', 7.13);
+insert into Generics_Price values (9,'walgreens', 9.51);
+insert into Generics_Price values (9,'costco', 10);
+
+--Simvastatin extra packages
+insert into Generics_Price values (10,'walmart', 4);
+insert into Generics_Price values (10,'walgreens', 15);
+insert into Generics_Price values (10,'costco', 5.21);
+
+insert into Generics_Price values (11,'walmart', 5.78);
+insert into Generics_Price values (11,'walgreens', 15);
+insert into Generics_Price values (11,'costco', 8.38);
+AB

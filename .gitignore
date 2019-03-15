@@ -4,12 +4,17 @@
 
 tomcat
 
+#Database
+MyDatabases
+
+
 #
 # Default excludes
 #
 
 #database
 derby.log
+MyDatabases
 
 # Binaries
 *.7z
