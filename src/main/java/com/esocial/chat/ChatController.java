@@ -25,25 +25,7 @@ public class ChatController {
 	@Autowired
 	LoginService service;
 		
-	@RequestMapping(value = "/chat_js", method = RequestMethod.GET)
-	public String handleChat(
-			  ModelMap model)
-	{
-		
-		System.out.println("Sending to home area.");
-		String localhost = "";
-	      try {
-	           InetAddress inetAddress;
-	           inetAddress = InetAddress.getLocalHost();
-	           System.out.println("IP Address:- " + inetAddress.getHostAddress());
-	           System.out.println("Host Name:- " + inetAddress.getHostName());
-	           localhost = inetAddress.getHostAddress();
-	      } catch (UnknownHostException ex) {
-	          System.out.println("Error: " + ex.getMessage());
-	      }
-		model.put("localh", localhost);
-		return "/WEB-INF/views/javascript/chat_script.jsp";
-	}
+
 
 }
 

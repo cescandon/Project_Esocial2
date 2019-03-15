@@ -12,7 +12,7 @@
  <link rel="stylesheet" href="css/main">
  <link rel="stylesheet" href="css/cards">
  <link rel="stylesheet" href="css/forms">
- <link rel="stylesheet" href="css/tasks">
+
 
 </head>
 
@@ -24,21 +24,21 @@
   <a href="javascript:void(0)" id="brand-logo">ESocial</a>
   <a href="javascript:void(0)" id="menu">menu</a>
   <div class="nav-options">
-    <a href="javascript:void(0)" onclick="OpenClose();">My Tasks</a>
-    <a href="javascript:void(0)" onclick="OpenClose();">Messages</a>
     <a href="javascript:void(0)" onclick="Rotate();">Login</a>
+    <a href="javascript:void(0)" onclick="ShowJoin();">Signup</a>
   </div>
-
+	<a>${nameLocation}</a>a>
 </nav>
 
 
-
+${pageContext.request.servletPath}
 <div class="wrapper">
   <div class="log-card">
     <div class="log-front">
       <div class="log-front-content">
             <a>Are you ready?</a>
-            <a>${errorLocation}</a>
+            ${errorLocation}
+            
       </div>
     </div>
     <div class="log-form rotating-border">
@@ -54,8 +54,7 @@
       </form>
     </div>
     <div class="log-back">
-
-      <!-- <div class="log-back-content">
+      <div class="log-back-content">
         <h1>
           <span>J</span>
           <span>O</span>
@@ -66,36 +65,27 @@
           <span>O</span>
           <span>W</span>
         </h1>
-        <span>Github</span>
+      <div class="log-form">
+        <form action="mlogin" class="log-front-content" method="post">
+          <input type="text" name="name" placeholder="Username">
+          <input type="password" name="password" placeholder="Password">
+          <input type="submit" name="register" value="Register">
+      </form>
+    </div>
         <div class="sm">
           <a href="#"><i class="fab fa-facebook-f"></i></a>
           <a href="#"><i class="fab fa-twitter"></i></a>
           <a href="#"><i class="fab fa-youtube"></i></a>
           <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </div>
 
-
+  
+ 
 </body>
 
-<script type="text/javascript">
-  let t = document.querySelector(".list-area");
-  let openTasks = false;
-  let openOrders = false;
-  function OpenClose(){
-    t.style.marginLeft= openTasks? "-350px" : "0";
-    openTasks = !openTasks;
-  }
-
-  function Rotate(){
-    let f = document.querySelector(".log-front");
-    f.classList.toggle("log-drop");
-
-  }
-
-</script>
-
+<script src="task_js"></script>
 </html>

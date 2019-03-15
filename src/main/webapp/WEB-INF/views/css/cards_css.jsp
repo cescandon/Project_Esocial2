@@ -76,6 +76,10 @@
   animation: dropcard 4s linear forwards;
 }
 
+.log-flipover{
+  animation: flipover .7s linear forwards;
+}
+
 @keyframes dropcard{
   0%{
     opacity: 1;
@@ -88,12 +92,33 @@
     transform: rotateZ(-80deg);
   }
 
-
-
   100%{
     left: 80%;
     opacity: 0;
     transform: rotateZ(-80deg);
+  }
+}
+
+@keyframes flipover{
+  0%{
+    left: 50%;
+    z-index: -2;
+  }
+
+  50%{
+    left: 130%;
+  }
+
+  75%{
+    left: 160%;
+    z-index: -2;
+  }
+
+
+
+  100%{
+    left: 50%;
+    z-index: 2;
   }
 }
 
@@ -104,7 +129,7 @@
   text-align: center;
   width: 100%;
   margin: auto;
-  font-size: 2em;
+  font-size: 1.5em;
   text-shadow: 3px 3px 5px black;
   z-index: 0;
 }
@@ -134,5 +159,4 @@
   background: #2c3e50;
   color: white;
 }
-
 

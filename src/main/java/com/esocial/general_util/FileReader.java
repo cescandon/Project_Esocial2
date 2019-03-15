@@ -27,9 +27,6 @@ public class FileReader {
         System.out.println(fileString);
 	}
 	
-	public static void TryTestFile() {
-		OutputStreamDemo.testFile();
-	}
 	
 	private static byte[] readFileData(File file, int fileLength) {
         FileInputStream fileIn = null;
@@ -48,35 +45,8 @@ public class FileReader {
         		System.out.println("Error closing file: " + e.getMessage());
         	}
         }
-
         return fileData;
 	}
-}
-
-class Filehandles{
-	
-	FileOutputStream file;
-	ObjectOutput output;
-	
-	public Filehandles(String filename)  {      
-		
-		try {
-	        file = new FileOutputStream(filename);
-	        output = new ObjectOutputStream(file);
-      
-	        //System.out.println("Finished opening file.");
-		} catch(IOException o) {
-			System.out.println("File not found error.");
-		}
-	}
-	
-	public void Write(String msg) {
-		try {
-			output.writeObject(msg);
-			output.flush();
-		}catch(IOException o) {}
-	}
-	
 }
 
 class OutputStreamDemo {

@@ -18,21 +18,15 @@ public class LoginController {
 	
 	//set login service with dependency injection
 	//with autowiring
-	@Autowired
+	@Autowired	
 	LoginService service;
 	
-	LoginService database;
-	
-	//Mapping everything with /login to here
-	//letting the servlet here know is not the name of a view/url, but be sent as response
-	//by using @ResponseBody to make it a string not a view
 
-	
+	//use @ResponseBody to make it a string not a view	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String showHome() {
 		
-		//database.validateUser(user, password);
-		
+		//database.validateUser(user, password);		
 		return "/WEB-INF/views/signin.jsp";
 	}
 	
@@ -50,7 +44,7 @@ public class LoginController {
 		}
 		else
 		{
-			model.put("errorLocation", "Error Username");
+			model.put("errorLocation", "<a>Error Username</a>");
 			return "/WEB-INF/views/signin.jsp";
 		}
 		return "/WEB-INF/views/chat.jsp";
@@ -62,25 +56,6 @@ public class LoginController {
 		
 		return "/WEB-INF/views/css/signin_css.jsp";
 	}
-	
-	//use same name in variable as form parameter, now you dont need getParam("param")
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String handleLogin(@RequestParam String name,
-							  @RequestParam String password,
-							  ModelMap model) {
-				
-		if(!service.validateUser(name, password))
-		{
-			model.put("errorMessage", "Invalid user entered!");
-			return "login";
-		}
-		
-		model.put("name", name);
-		//model.put("password", password);
-		return "welcome";	
-
-	}
-
 }
 
 //with the configuration we dont need prefix anymore "/WEB-INF/views/login.jsp"

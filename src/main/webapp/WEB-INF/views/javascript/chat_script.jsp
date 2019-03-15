@@ -18,9 +18,6 @@ function startConnection(){
 	}
 }
 
-
-
-
                       
 function processOpen(message){
     messagesTextArea.value += "Server connect... \n";
