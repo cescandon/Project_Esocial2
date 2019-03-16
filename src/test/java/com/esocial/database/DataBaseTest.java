@@ -91,16 +91,6 @@ public class DataBaseTest {
 		System.out.println("\nTest Check forgotten Password: OK\n");
 	}
 
-	@Test
-	public final void testGetUserName() throws SQLException {
-		
-		System.out.println("\nTest Check forgotten User Name\n");
-		
-		assertTrue(tester.checkPass(passW));
-		String name = tester.getUserPassword(passW);
-		assertEquals(username, name);
-		System.out.println("\nTest Check forgotten Name: OK\n");
-	}
 
 	@Test
 	public final void testDeleteUser() {
