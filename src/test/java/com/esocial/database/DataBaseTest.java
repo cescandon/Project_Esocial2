@@ -40,6 +40,7 @@ public class DataBaseTest {
 	@Test
 	public final void testCheckUser() {
 		
+		System.out.println("\nTest CheckUSER\n");
 		
 		tester.CheckIfUserExists(username);
 		
@@ -47,6 +48,7 @@ public class DataBaseTest {
 
 	@Test
 	public final void testCheckPass() {
+		System.out.println("\nTest CheckPass\n");
 		
 		try {
 			tester.checkPass(passW);
@@ -59,12 +61,29 @@ public class DataBaseTest {
 	@Test
 	public final void testCheckIfUserExists() {
 		
-		tester.CheckIfUserExists(username);
+		System.out.println("\nTest Check IF User Exists\n");
+		
+		assertTrue(tester.CheckIfUserExists(username));
+		
+		assertEquals(username, "Tom");
+		
+	}
+	
+	@Test
+	public final void testGetPassword() {
+		
+		System.out.println("\nTest Check forgotten Password\n");
+		
+		assertTrue(tester.CheckIfUserExists(username));
+		String pass = tester.getUserPassword(username);
+		assertEquals(passW, pass);
+		System.out.println("\nTest Check forgotten Password: OK\n");
 	}
 
 	@Test
 	public final void testDeleteUser() {
 		
+		System.out.println("\nTest Delete User\n");
 		try {
 			tester.deleteUser(username, passW);
 		} catch (SQLException e) {
@@ -76,8 +95,10 @@ public class DataBaseTest {
 	@Test
 	public final void testCreateUser() {
 		
+		System.out.println("\nTest Check CreateUser\n");
+		
 		try {
-			tester.createUser(username, email, passW);
+			tester.createUser("Sally", "myemail@gmail.com", passW);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -87,7 +108,7 @@ public class DataBaseTest {
 	@After
 	public void CleanUp()
 	{
-		
+		System.out.println("\n-------------\n");
 		// delete created table 
 		try {
 			tester.ShowTable();
