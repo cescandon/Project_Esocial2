@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
  
 public class WebDatabase {
 
@@ -36,7 +37,7 @@ public WebDatabase() {
   
   public void createTable() throws SQLException
   {
-	  String command = "Create table users (id SERIAL primary key, name varchar(30), email varchar(30), password varchar(20))";
+	  String command = "CREATE TABLE users (id SERIAL primary key, name varchar(30), email varchar(30), password varchar(20))";
 	  try {
 		  conn = connectionToDerby();
 		  stmt.executeUpdate(command);
