@@ -22,9 +22,6 @@
 
 ![step 5](./images/step5.png)
 
-## Step 6
-
-![step 6](./images/step6.png)
 
 ## TEST Commands
 
