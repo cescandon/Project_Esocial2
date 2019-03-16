@@ -14,6 +14,8 @@ public class WebDatabase {
   
   String directory ;
   String dbName ;
+  static int usersAdded = 0; // increment for id
+
   
 public WebDatabase() {
 	dbName = "WebDatabase";
@@ -37,11 +39,8 @@ public WebDatabase() {
   
   public void createTable() throws SQLException
   {
-<<<<<<< HEAD
-	  String command = "CREATE TABLE users (id SERIAL primary key, name varchar(30), email varchar(30), password varchar(20))";
-=======
-	  String command = "Create table users (id int primary key, name varchar(30), email varchar(30), password varchar(20))";
->>>>>>> 2b93dc6c3dd53606f3dd4157abda904e4d24a890
+	  // String command = "CREATE TABLE users (id SERIAL primary key, name varchar(30), email varchar(30), password varchar(20))";
+	  String command = "CREATE TABLE users (id int primary key, name varchar(30), email varchar(30), password varchar(20))";
 	  try {
 		  conn = connectionToDerby();
 		  stmt.executeUpdate(command);
@@ -63,21 +62,21 @@ public WebDatabase() {
   }
   
   public void ShowTable() throws SQLException {
-	  String command = "Select * users";
+	  String command = "Select * FROM users";
 	  
 	  try
 	  {
 		  conn = connectionToDerby();
 		  ResultSet result = stmt.executeQuery(command);
 		  while(result.next()) {
-			  System.out.println("ID: " + result.getInt("id") + "Name: " + result.getString("name") + " email: " + result.getString("email"));
+			  System.out.println("ID: " + result.getInt("id") + " Name: " + result.getString("name") + " email: " + result.getString("email"));
 		  }
 		  
 		  
 	  }
 	  catch(Exception e)
 	  {
-		  System.out.println("Error at ShowTable: " + e.getMessage() );
+		  System.out.println("Error at ShowTable: " + e.getMessage());
 	  }
 	  finally
 	  {
@@ -138,18 +137,14 @@ public WebDatabase() {
 				  {
 					  String data = results.getString("name");
 					  if(data.equalsIgnoreCase(userName))
-						  doesExist = true;					 					  
-				  }
+						  doesExist = true;	
+					  }
 			  }
 			  catch (Exception e)
 			  {
-				  System.out.println("Error at checkUsersBOolean: " + e.getMessage() );
+				 System.out.println("Error at checkUSer: " + e.getMessage() );
 			  }
 		  }
-	  }
-	  catch(Exception e)
-	  {
-		  System.out.println("Error at checkUSer: " + e.getMessage() );
 	  }
 	  finally // closing connection in reverse order to avoid potential exceptions
 	  {
@@ -165,11 +160,10 @@ public WebDatabase() {
 	  return doesExist;
   }
 
-//checkifuserexists Boolean
+// string print of password
  public String getUserPassword(String userName)
  {
-	  // boolean variable
-	  boolean doesExist= false;
+	 
 	  System.out.println("Checking user");
 	    // create a query for username 
 	  try {
@@ -192,7 +186,7 @@ public WebDatabase() {
 			  }
 			  catch (Exception e)
 			  {
-				  System.out.println("Error at checkUsersBOolean: " + e.getMessage() );
+				  System.out.println("Error at getUserPass: " + e.getMessage() );
 			  }
 		  }
 	  }
@@ -220,45 +214,89 @@ public WebDatabase() {
 	  return null;
  }
  
-  
+  // get user name
+ public String getUserName(String userPass)
+ {
+	  System.out.println("Checking username by password");
+	    // create a query for username 
+	  try {
+		  Connection conn = connectionToDerby();
+		  Statement stmt = conn.createStatement();
+		  ResultSet results = stmt.executeQuery("SELECT * FROM users WHERE password = '" + userPass +"'");
+		  
+		  if(results != null)
+		  {
+			  try {
+				  while(results.next())
+				  {
+					  String data = results.getString("password");
+					  if(data.equalsIgnoreCase(userPass))
+					  {
+						String nameUser = results.getString("name");
+						return nameUser;
+					  }
+				  }
+			  }
+			  catch (Exception e)
+			  {
+				  System.out.println("Error at getUserName: " + e.getMessage() );
+			  }
+		  }
+	  }
+	  catch(Exception e)
+	  {
+		  System.out.println("Error at checkUSer: " + e.getMessage() );
+	  }
+	  finally // closing connection in reverse order to avoid potential exceptions
+	  {
+		  try {
+			  
+			  if(stmt != null)
+			  {
+				  stmt.close();
+			  }
+			  if(conn != null)
+			  {
+				  conn.close();
+			  }
+		  }catch(Exception e) {
+			  System.out.println("Error closing in check user name");
+		  }
+
+	  }
+	  return null;
+ }
+ 
   // check if password is correct return Boolean
   public Boolean checkPass(String userPass) throws SQLException
   {
 	  // boolean variable
 	  boolean samePass= false;
-	  
-	    // create a query for password
+	  // boolean variable
+	  System.out.println("Checking password");
+	    // create a query for password 
 	  try {
-		  
 		  Connection conn = connectionToDerby();
 		  Statement stmt = conn.createStatement();
-		  ResultSet results = stmt.executeQuery("SELECT * FROM users WHERE password = '" + userPass + "'");
+		  ResultSet results = stmt.executeQuery("SELECT * FROM users WHERE password = '" + userPass +"'");
 		  
 		  if(results != null)
 		  {
-			  try
-			  {
-				  if(results.next())
+			  try {
+				  while(results.next())
 				  {
-					 String data = results.getString("userPass");
-					 if(data == userPass)
-					 {
-					  // a hit
-					  samePass = true;
-					 }
-				  }
+					  String data = results.getString("password");
+					  if(data.equalsIgnoreCase(userPass))
+						  samePass = true;	
+					  }
 			  }
-				  catch (Exception e)
-				  {
-					  System.out.println("Error at CheckPassBoolean: " + e.getMessage() );
-				  }
+			  catch (Exception e)
+			  {
+				 System.out.println("Error at checkUSer: " + e.getMessage() );
+			  }
 		  }
 	  }
-		  catch(Exception e)
-		  {
-			  System.out.println("Error at checkPassBoolean: " + e.getMessage() );
-		  }
-	  finally
+	  finally // closing connection in reverse order to avoid potential exceptions
 	  {
 		  if(stmt != null)
 		  {
@@ -269,35 +307,10 @@ public WebDatabase() {
 			  conn.close();
 		  }
 	  }
-	  
 	  return samePass;
   }
+ 
   
-  // Check if user exist and print result. 
-  public Boolean CheckIfUserExists(String user)
-  {
-	  
-	  try 
-	  {
-		  boolean confirm = checkUser(user); // call checkUser as a helper function
-		  
-		  if(confirm == true)
-		  {
-			  System.out.println("User: " + user + " does exist.");
-		  }
-		  if(confirm == false)
-		  {
-			  System.out.println("User: " + user + " not found");
-		  }
-		  return confirm;
-	  }
-	   catch(Exception e) {
-		   System.out.println("Error at checkIFExists: " + e.getMessage() );
-	   }
-	   return false;
-  }
-  
-
   
   // delete user and print result 
   public void deleteUser(String _username, String _userPassword) throws SQLException
@@ -324,7 +337,6 @@ public WebDatabase() {
   }
   
   
-  static int usersAdded = 0;
   
   // create user 
   public void createUser(String nameEntry, String userEmail, String userPass) throws SQLException
@@ -360,3 +372,5 @@ public WebDatabase() {
 	  }
   }
 }
+
+
