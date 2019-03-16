@@ -25,6 +25,10 @@
 
 ## TEST Commands
 
+### click send to connect to server
+
+### Start Typing commands
+
 ![cmd reminders](./images/cmdrem.png)
 
 ![cmd reminders2](./images/cmdrem2.png)
