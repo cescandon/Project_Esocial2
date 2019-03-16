@@ -44,6 +44,11 @@ function processCMD(message){
 		console.log("Doing command");
 		AddTask(count++, msg.substring(3,msg.length));
 	}
+	else if (check.localeCompare("CR"))
+	{
+	    console.log("Doing reminder");
+		AddReminder(count++, msg.substring(3,msg.length));
+	}
 	else
 		messagesTextArea.value += msg.data + " \n";
 }

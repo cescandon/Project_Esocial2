@@ -26,6 +26,10 @@ public class ReminderList {
     public void add(Reminder rem) {
         reminders.add(rem);
     }
+    
+    public int getSize() {
+    	return reminders.size();
+    }
 
     public List<Reminder> getTodaysReminders() {
         List<Reminder> todays = new ArrayList<>();
@@ -41,6 +45,10 @@ public class ReminderList {
                 todays.add(rem);
         }
         return todays;
+    }
+    
+    public void ClearList() {
+    	reminders.clear();
     }
     
 }

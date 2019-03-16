@@ -72,11 +72,11 @@ public class DataBaseTest {
 		
 		System.out.println("\nTest Check IF User Exists\n");
 		
-		assertTrue(tester.CheckIfUserExists(username));
+		try {
+			assertTrue(tester.checkUser(username));
+		} catch (SQLException e) { System.out.println(e.getMessage());}
 		
-		assertEquals(username, "Tom");
-	
-		
+		assertEquals(username, "Tom");		
 	}
 
 	

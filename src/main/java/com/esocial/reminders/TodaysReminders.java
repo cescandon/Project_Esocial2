@@ -5,14 +5,8 @@ import java.util.*;
 
 
 public class TodaysReminders{
-	
-	ReminderList _reminders;
-	
-	TodaysReminders(ReminderList rems){
-		_reminders = rems;
-	}
-	
-	public List<String> doGet() {		
+		
+	public static List<String> getTodays(ReminderList _reminders) {		
 		
 		 List<String> todayRems = new ArrayList<>();
 		_reminders.getTodaysReminders().forEach(rem -> {

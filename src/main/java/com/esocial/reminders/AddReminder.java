@@ -38,7 +38,7 @@ public final class AddReminder {
         _min = (min > 59)? 59: min;
         GregorianCalendar alert = new GregorianCalendar(_yr, _mo, _day, _hr, _min);
         remList.add(new Reminder(desc, alert));
-        
+       
         return true;
     }
 }

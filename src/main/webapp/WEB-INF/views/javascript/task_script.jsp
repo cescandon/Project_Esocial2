@@ -12,8 +12,25 @@
   }
   
   function AddTask(taskname, task){
+  
+  	if(!openTasks)
+  		OpenClose();
+  
   	tlist[taskname] = task;
   	console.log("Doing task \n: " + task);
+  	let htmlString = "";
+  	for(let key in tlist) {
+  		htmlString += tlist[key];		
+  	}
+  	t.innerHTML = htmlString;
+  }
+  
+   function AddReminder(remname, rem){ 
+     	if(!openTasks)
+  		OpenClose();
+  		
+  	tlist[remname] = rem;
+  	console.log("Doing Reminder \n: " + rem);
   	let htmlString = "";
   	for(let key in tlist) {
   		htmlString += tlist[key];		

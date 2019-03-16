@@ -33,5 +33,8 @@ public class Reminder {
         return alertTime;
     }
     
+    public String getData() {
+    	return desc + " @" + String.format(" %1$tH:%1$tM", alertTime);
+    }
     
 }
