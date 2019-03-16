@@ -12,6 +12,8 @@
 
 ## Step 3
 
+# Hit run
+
 ![step 3](./images/step3.png)
 
 ## Step 4
