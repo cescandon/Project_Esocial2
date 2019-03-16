@@ -66,6 +66,7 @@ public class DataBaseTest {
 		assertTrue(tester.CheckIfUserExists(username));
 		
 		assertEquals(username, "Tom");
+	
 		
 	}
 	
