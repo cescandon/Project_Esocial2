@@ -25,3 +25,13 @@
 ## Step 6
 
 ![step 6](./images/step6.png)
+
+## TEST Commands
+
+![cmd reminders](./images/cmdrem.png)
+
+![cmd reminders2](./images/cmdrem2.png)
+
+![cmd tasks](./images/cmdtask.png)
+
+![cmd task2](./images/cmdtask2.png)
