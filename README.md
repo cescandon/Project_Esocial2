@@ -12,7 +12,7 @@
 
 ## Step 3
 
-# Hit run
+### Hit run
 
 ![step 3](./images/step3.png)
 
@@ -21,6 +21,8 @@
 ![step 4](./images/step4.png)
 
 ## Step 5
+
+### Go to a browser window and go to url localhost:8080
 
 ![step 5](./images/step5.png)
 
