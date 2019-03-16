@@ -10,7 +10,7 @@ import org.junit.Test;
 
 public class DataBaseTest {
 	
-	// create oject 
+	// create object 
 	WebDatabase tester;
 	// variables to use for passing to each respected test case
 	String username = "Tom";
@@ -29,6 +29,7 @@ public class DataBaseTest {
 		try {
 			tester.createTable();
 			tester.createUser(username, email, passW);
+			tester.ShowTable();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -38,11 +39,16 @@ public class DataBaseTest {
 
 
 	@Test
-	public final void testCheckUser() {
+	public final void testCheckUser() throws SQLException {
 		
 		System.out.println("\nTest CheckUSER\n");
 		
-		tester.CheckIfUserExists(username);
+		assertTrue(tester.checkUser(username));
+		
+		assertEquals(username, "Tom");
+		
+		System.out.println("\nTest Check User exist: OK\n");
+
 		
 	}
 
@@ -51,7 +57,10 @@ public class DataBaseTest {
 		System.out.println("\nTest CheckPass\n");
 		
 		try {
-			tester.checkPass(passW);
+			assertTrue(tester.checkPass(passW));
+			assertEquals(passW, "fml");
+			System.out.println("\nTest Check Password: OK\n");
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -69,16 +78,28 @@ public class DataBaseTest {
 	
 		
 	}
+
 	
 	@Test
-	public final void testGetPassword() {
+	public final void testGetPassword() throws SQLException {
 		
 		System.out.println("\nTest Check forgotten Password\n");
 		
-		assertTrue(tester.CheckIfUserExists(username));
+		assertTrue(tester.checkUser(username));
 		String pass = tester.getUserPassword(username);
 		assertEquals(passW, pass);
 		System.out.println("\nTest Check forgotten Password: OK\n");
+	}
+
+	@Test
+	public final void testGetUserName() throws SQLException {
+		
+		System.out.println("\nTest Check forgotten User Name\n");
+		
+		assertTrue(tester.checkPass(passW));
+		String name = tester.getUserPassword(passW);
+		assertEquals(username, name);
+		System.out.println("\nTest Check forgotten Name: OK\n");
 	}
 
 	@Test
@@ -87,6 +108,7 @@ public class DataBaseTest {
 		System.out.println("\nTest Delete User\n");
 		try {
 			tester.deleteUser(username, passW);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,9 +119,15 @@ public class DataBaseTest {
 	public final void testCreateUser() {
 		
 		System.out.println("\nTest Check CreateUser\n");
-		
 		try {
 			tester.createUser("Sally", "myemail@gmail.com", passW);
+			username = "Sally";
+			assertTrue(tester.checkUser("Sally"));
+			
+			assertEquals(username, "Sally");
+			
+			System.out.println("\nTest Check Create User: OK\n");
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -112,7 +140,7 @@ public class DataBaseTest {
 		System.out.println("\n-------------\n");
 		// delete created table 
 		try {
-			tester.ShowTable();
+			//tester.ShowTable();
 			tester.deleteTable();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
