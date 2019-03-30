@@ -1,11 +1,13 @@
 package com.project.esocial;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -33,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     System.out.println("onclick code");
                     verifyUserLogin();
+                    goToUserPage();
 
             }
 
@@ -45,6 +48,20 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void userIsLoggedIn() {
+
+    }
+
+    private void goToUserPage(){
+
+
+        //Setup an intent
+        Intent startIntent = new Intent(getApplicationContext(), RemCategoryActivity.class);
+        //pass info to another activity
+        //startIntent.putExtra("MyReminderList", adapter.getMyList(position));
+        //Toast.makeText(this, "You clicked " + adapter.getMyItem(position) + " on row", Toast.LENGTH_SHORT).show();
+        //Start Activity
+        startActivity(startIntent);
+
 
     }
 
