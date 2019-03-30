@@ -24,15 +24,15 @@ public class RemCategoryActivity extends AppCompatActivity implements MyRecycler
         // data to populate the RecyclerView with
         AllReminders allreminders = new AllReminders();
 
-        allreminders.addCategory("Personal");
-        allreminders.addCategory("Work");
-        allreminders.addCategory("School");
-        allreminders.addCategory("Medical");
+        allreminders.addCategory("Managers");
+        allreminders.addCategory("Users");
+        allreminders.addCategory("Customers");
+        allreminders.addCategory("Employees");
 
-        allreminders.getCategory(0).add(new Reminder("Do laundry"));
-        allreminders.getCategory(1).add(new Reminder("Finish Business Report"));
-        allreminders.getCategory(2).add(new Reminder("Turn in homework."));
-        allreminders.getCategory(3).add(new Reminder("Take allergy medicine."));
+        allreminders.getCategory(0).add(new Reminder("Contact Manager"));
+        allreminders.getCategory(1).add(new Reminder("Contact User"));
+        allreminders.getCategory(2).add(new Reminder("Contact Customer"));
+        allreminders.getCategory(3).add(new Reminder("Contact Employee"));
 
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
